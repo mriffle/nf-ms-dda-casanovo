@@ -25,9 +25,9 @@ process CONVERT_TO_LIMELIGHT_XML {
     """
     echo "Running Limelight XML conversion..."
         ${exec_java_command(task.memory)} \
-        -c ${casanovo_params} \
-        -m ${mztab} \
-        -o results.limelight.xml \
+        --config-yaml=${casanovo_params} \
+        --mztab=${mztab} \
+        --out-file=results.limelight.xml \
         -v \
         > >(tee "limelight-xml-convert.stdout") 2> >(tee "limelight-xml-convert.stderr" >&2)
         
