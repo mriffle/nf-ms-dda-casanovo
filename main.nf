@@ -44,7 +44,7 @@ workflow {
 
     // get weights file from requested location
     if (params.casanovo_weights.startsWith("https://") && params.casanovo_weights =~ /^https:\/\/[^\/]*github\.com/) {
-        GH_DOWNLOAD_WEIGHTS(params.params.casanovo_weights)
+        GH_DOWNLOAD_WEIGHTS(params.casanovo_weights)
         casanovo_weights = GH_DOWNLOAD_WEIGHTS.out.ckpt_file
     } else if(params.casanovo_weights.startsWith("https://")) {
         PANORAMA_GET_CASANOVO_WEIGHTS(params.casanovo_weights)
