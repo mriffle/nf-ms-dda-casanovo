@@ -4,7 +4,7 @@ include { CASANOVO } from "../modules/casanovo"
 include { CONVERT_TO_LIMELIGHT_XML } from "../modules/limelight_xml_convert"
 include { UPLOAD_TO_LIMELIGHT } from "../modules/limelight_upload"
 
-workflow wf_comet_percolator {
+workflow wf_casanovo {
 
     take:
         spectra_file_ch
