@@ -11,6 +11,7 @@ process CASANOVO {
 
     output:
         path("results.mztab"), emit: mztab_file
+        path("results.log"), emit: log_file
         path("*.stdout"), emit: stdout
         path("*.stderr"), emit: stderr
 
