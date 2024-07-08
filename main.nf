@@ -43,10 +43,17 @@ workflow {
     }
 
     // get weights file from requested location
-    if (params.casanovo_weights.startsWith("https://") && params.casanovo_weights =~ /^https:\/\/[^\/]*github\.com/) {
-        GH_DOWNLOAD_WEIGHTS(params.casanovo_weights)
-        casanovo_weights = GH_DOWNLOAD_WEIGHTS.out.ckpt_file
-    } else if(params.casanovo_weights.startsWith("https://")) {
+    // if (params.casanovo_weights.startsWith("https://") && params.casanovo_weights =~ /^https:\/\/[^\/]*github\.com/) {
+    //     GH_DOWNLOAD_WEIGHTS(params.casanovo_weights)
+    //     casanovo_weights = GH_DOWNLOAD_WEIGHTS.out.ckpt_file
+    // } else if(params.casanovo_weights.startsWith("https://")) {
+    //     PANORAMA_GET_CASANOVO_WEIGHTS(params.casanovo_weights)
+    //     casanovo_weights = PANORAMA_GET_CASANOVO_WEIGHTS.out.panorama_file
+    // } else {
+    //     casanovo_weights = file(params.casanovo_weights, checkIfExists: true)
+    // }
+
+    if(params.casanovo_weights.startsWith("https://")) {
         PANORAMA_GET_CASANOVO_WEIGHTS(params.casanovo_weights)
         casanovo_weights = PANORAMA_GET_CASANOVO_WEIGHTS.out.panorama_file
     } else {
