@@ -1,6 +1,6 @@
 def exec_java_command(mem) {
     def xmx = "-Xmx${mem.toGiga()-1}G"
-    return "java -Djava.aws.headless=true ${xmx} -jar /usr/local/bin/casanovo2LimelightXML.jar"
+    return "java -Djava.aws.headless=true ${xmx} -jar /usr/local/bin/casanovoToLimelightXML.jar"
 }
 
 process CONVERT_TO_LIMELIGHT_XML {
