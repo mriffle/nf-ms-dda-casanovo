@@ -2,7 +2,7 @@ process CASANOVO {
     publishDir "${params.result_dir}/casanovo", failOnError: true, mode: 'copy'
     label 'process_high_constant'
     container params.images.casanovo
-    containerOptions '--shm-size=1g --gpus=all'
+    containerOptions "--shm-size=1g ${params.use_gpus ? '--gpus=all' : ''}"
 
     input:
         path mzml_file
