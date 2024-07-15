@@ -16,6 +16,7 @@ process UPLOAD_TO_LIMELIGHT {
         val search_long_name
         val search_short_name
         val tags
+        path config_file
 
     output:
         path("*.stdout"), emit: stdout
@@ -41,6 +42,7 @@ process UPLOAD_TO_LIMELIGHT {
         --search-description="${search_long_name}" \
         --search-short-label="${search_short_name}" \
         --path="${workflow.launchDir}" \
+        --add-file="${config_file}" \
         ${scans_param} \
         ${tags_param} \
         > >(tee "limelight-submit-upload.stdout") 2> >(tee "limelight-submit-upload.stderr" >&2)

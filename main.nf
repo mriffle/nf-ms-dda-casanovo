@@ -60,7 +60,9 @@ workflow {
         casanovo_weights = file(params.casanovo_weights, checkIfExists: true)
     }
 
-    wf_casanovo(spectra_file, casanovo_params, casanovo_weights, from_raw_file)
+    config_file = file(workflow.configFiles[1])
+
+    wf_casanovo(spectra_file, casanovo_params, casanovo_weights, from_raw_file, config_file)
 }
 
 //
