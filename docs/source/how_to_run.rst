@@ -1,10 +1,10 @@
 ===================================
 How to Run the Workflow
 ===================================
-Follow these instructions to run the Nextflow DDA workflow from your system.
+Follow these instructions to run the Nextflow Casanovo workflow from your system.
 Note that your system must remain on for the duration of the running of the
-workflow. Even though the steps may be running on AWS Batch, your system still
-orchestrates the running of the steps.
+workflow. Even though the steps may be running on a remote system (like AWS Batch),
+your system still orchestrates the running of the steps.
 
 .. important::
 
@@ -25,13 +25,13 @@ Follow these steps to run a workflow:
 
     This will create a directory named ``my-nextflow-run`` in your home directory and move into that directory.
 
-2. Copy in or create a pipeline.config file. A template can be found at: https://raw.githubusercontent.com/mriffle/nf-teirex-dda/main/resources/pipeline.config
+2. Copy in or create a pipeline.config file. A template can be found at: https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/pipeline.config
 
     Example command:
 
     .. code-block:: bash
 
-       wget https://raw.githubusercontent.com/mriffle/nf-teirex-dda/main/resources/pipeline.config
+       wget https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/pipeline.config
 
     You may edit this config file in two ways:
         
@@ -56,15 +56,15 @@ Follow these steps to run a workflow:
         For a complete desciption of all parameters see 
         :doc:`workflow_parameters`.
 
-3. Copy in or create a Comet params file. A template can be found at: https://raw.githubusercontent.com/mriffle/nf-teirex-dda/main/resources/comet.params
+3. Copy in or create a Casanovo params file. A template can be found at: https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/casanovo.yaml
 
-    This is the file used to configure Comet. It contains many settings that should be reviewed and changed to search your particular data. For more information about Comet parameters see: https://uwpr.github.io/Comet/parameters/parameters_202301/
+    This is the file used to configure Casanovo. It contains many settings that may be reviewed and changed for your particular data.
 
     Example command:
 
     .. code-block:: bash
 
-       wget https://raw.githubusercontent.com/mriffle/nf-teirex-dda/main/resources/comet.params
+       wget https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/casanovo.yaml
 
     You may edit this config file in two ways:
         
@@ -72,23 +72,23 @@ Follow these steps to run a workflow:
 
     .. code-block:: bash
 
-        nano comet.params
+        nano casanovo.yaml
 
     Use the commands displayed in the bottom of the window to save the file and close the editor when you are done. They will be ``Control-O`` and ``<Enter>`` to save and ``Control-X`` to exit.
 
     **GUI Editor in your Operating System:**
 
-        *MacOS or Linux*: You can directly edit ``~/my-nextflow-run/comet.params`` using your favorite GUI editor.
+        *MacOS or Linux*: You can directly edit ``~/my-nextflow-run/casanovo.yaml`` using your favorite GUI editor.
         
         *Windows*: The file is a little tricky to find. In your file open dialogue, type in ``\\wsl$\`` and hit enter.
         This should reveal a ``Ubuntu-22.04`` directory (or something close to it). Go into that and double click on ``home``, then double
-        click on your username, then ``my-nextflow-run``. The ``comet.params`` file should be present and you can edit it like a normal file.
+        click on your username, then ``my-nextflow-run``. The ``casanovo.yaml`` file should be present and you can edit it like a normal file.
 
 
 4. Run the workflow.
 
    Nextflow workflows may be run with a variety of *executors*. Executors are what run the actual steps of the pipeline; that is, they are
-   the systems on which steps like Comet and msconvert will be run. Examples of executors are your local computer, a computer cluster, or
+   the systems on which steps like Casanovo and msconvert will be run. Examples of executors are your local computer, a computer cluster, or
    AWS Batch. The example below describes how to run the workflow using your local system or AWS Batch as the executor. 
 
 
@@ -96,13 +96,13 @@ Follow these steps to run a workflow:
     
     .. code-block:: bash
 
-        nextflow pull -r main mriffle/nf-teirex-dda
+        nextflow pull -r main mriffle/nf-ms-dda-casanovo
 
    Then, to run the steps of the workflow on your **local computer**, execute this command:
 
     .. code-block:: bash
 
-        nextflow run -resume -r main mriffle/nf-teirex-dda -c pipeline.config
+        nextflow run -resume -r main mriffle/nf-ms-dda-casanovo -c pipeline.config
     
     .. note::
 
@@ -115,7 +115,7 @@ Follow these steps to run a workflow:
 
     .. code-block:: bash
 
-        nextflow run -resume -r main -profile aws mriffle/nf-teirex-dda -bucket-dir s3://bucket/dir -c pipeline.config
+        nextflow run -resume -r main -profile aws mriffle/nf-ms-dda-casanovoa -bucket-dir s3://bucket/dir -c pipeline.config
 
     .. important::
 

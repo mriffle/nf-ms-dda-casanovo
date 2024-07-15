@@ -2,9 +2,8 @@
 Workflow Overview
 ===================================
 
-These documents describe a standardized Nextflow workflow for processing **DDA mass spectrometry
-data**. The source code for the workflow can be found at: 
-https://github.com/mriffle/nf-teirex-dda. 
+These documents describe a standardized Nextflow workflow for de novo searching of bottom up proteomics data using Casanovo. The source code for the workflow can be found at: 
+https://github.com/mriffle/nf-ms-dda-casanovo. 
 
 Workflow Components
 ===================
@@ -18,18 +17,13 @@ The workflow is made up of the following software components, each may be run mu
 
    If users supply RAW files as input, they will be converted to mzML using *msconvert*.
 
-*  **Comet** (https://uwpr.github.io/Comet/)
+*  **Casanovo** (https://github.com/Noble-Lab/casanovo)
 
-   Comet is the primary search program that identifies peptides present in the raw mass spectrometry data.
+   Casanovo is the primary search program that identifies peptides present in the raw mass spectrometry data.
 
-*  **Percolator** (https://github.com/percolator/percolator)
+* **Limelight XML Conversion** (https://github.com/yeastrc/limelight-import-casanovo)
 
-   Percolator is a widely-used program for post processing of proteomics search results that uses machine learning to apply
-   false discovery rates associated with peptide identifications.
-
-* **Limelight XML Conversion** (https://github.com/yeastrc/limelight-import-comet-percolator)
-
-   The Limelight XML converter converts the native output of Comet and Percolator to Limelight XML, suitable for import into Limelight. This
+   The Limelight XML converter converts the native output of Casanovo to Limelight XML, suitable for import into Limelight. This
    step will only run if uploading to Limelight is enabled.
 
 * **Limelight** (https://limelight-ms.org/)
@@ -50,7 +44,7 @@ supply the locations of your data and execute a simple Nextflow command, such as
 
 .. code-block:: bash
 
-    nextflow run -resume -r main mriffle/nf-teirex-dda -c pipeline.config
+    nextflow run -resume -r main mriffle/nf-ms-dda-casanovo -c pipeline.config
 
 The entire workflow will be run automatically, downloading Docker images as necessary, and the results output to
 the ``results`` directory. See :doc:`how_to_install` for more details on how to install Nextflow and Docker. See 

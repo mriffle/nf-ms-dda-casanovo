@@ -1,7 +1,8 @@
-===================================
-TEI-REX DDA Nextflow Documentation
-===================================
-This workflow will run the DDA workflow developed as part of the IARPA TEI-REX project. Please use the links below to navigate to pages
+========================================
+Casanovo Nextflow Workflow Documentation
+========================================
+This workflow will run an automated workflow developed using Nextflow to convert your raw file (if necessary),
+run Casanovo (https://github.com/Noble-Lab/casanovo), and optionally upload to Limelight (https://limelight-ms.org/) for data sharing and visualization. Please use the links below to navigate to pages
 describing how to install and run the workflow, how to retrieve results, and how to set up AWS Batch to run the workflow in the cloud.
 
 Getting Help, Providing Feedback, or Reporting Problems
@@ -21,8 +22,3 @@ Documentation Sections
    workflow_parameters
    results
    set_up_aws
-
-Funding & Attribution
-=======================================================
-This work was made possible with funding from IARPA via the TEI-REX program (Contract #: W911NF2220059). The contents of
-these documents are purely technical in nature, with no opinions or perspectives of the US Goverment's interests in TEI-REX.
