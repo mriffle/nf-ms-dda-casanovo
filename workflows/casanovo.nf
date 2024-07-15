@@ -11,6 +11,7 @@ workflow wf_casanovo {
         casanovo_params
         casanovo_weights
         from_raw_file
+        config_file
     
     main:
 
@@ -39,6 +40,7 @@ workflow wf_casanovo {
                 params.limelight_search_description,
                 params.limelight_search_short_name,
                 params.limelight_tags,
+                config_file
             )
         }
 
