@@ -42,13 +42,13 @@ which will be described below.
 
 Workflow Results
 ================
-All results will be output to the ``results/nf-teirex-dda`` subdirectory in the directory in which the workflow was
+By default, all results will be output to the ``results/nf-ms-dda-casanovo`` subdirectory in the directory in which the workflow was
 run. In this directory is a subdirectory for each program that was run as part of the workflow. A full description
 of output files can be found below.
 
 Output Files
 ============
-Below are each subdirectory created in ``results/nf-teirex-dda`` and a description of files
+Below are each subdirectory created in ``results/nf-ms-dda-casanovo`` and a description of files
 that will be found in those directories.
 
 ``comet`` Subdirectory

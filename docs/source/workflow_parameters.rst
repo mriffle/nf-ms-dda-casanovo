@@ -4,7 +4,7 @@ Workflow Parameters
 
 The workflow parameters should be included in a configuration file, an example
 of which can be found at
-https://raw.githubusercontent.com/mriffle/nf-teirex-dda/main/resources/pipeline.config
+https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/pipeline.config
 
 The parameters in this file should be changed to indicate the locations of your data, the
 options you'd like to use for the software included in the workflow, and the capabilities and
@@ -35,15 +35,16 @@ Below is a complete description of all parameters that may be included in these 
 .. note::
 
     This workflow can process files stored in **PanoramaWeb**. When specifying directories or file locations, any paths that begin with ``https://`` will be interpreted as being PanoramaWeb locations.
+    The exception to this is specifying ``casanovo_weights``, where a GitHub URL may be used.
 
-    For example, to process raw files stored in PanoramaWeb, you would have the following in your pipeline.config file:
+    For example, to process a raw file stored in PanoramaWeb, you would have the following in your pipeline.config file:
 
     .. code-block:: bash
 
-        quant_spectra_dir= 'https://panoramaweb.org/_webdav/path/to/@files/RawFiles/'
+        spectra_file= 'https://panoramaweb.org/_webdav/path/to/@files/RawFiles/my_raw_file.raw'
 
 
-    Where, ``https://panoramaweb.org/_webdav/path/to/@files/RawFiles/`` is the WebDav URL of the folder on the Panorama server.
+    Where, ``https://panoramaweb.org/_webdav/path/to/@files/RawFiles/my_raw_file.raw`` is the WebDav URL of the file on the Panorama server.
 
 
 The ``params`` Section
@@ -57,14 +58,17 @@ The ``params`` Section
      - Parameter Name
      - Description
    * - ✓
-     - ``spectra_dir``
-     - That path to the location of the raw or mzML files to be processed. This can be a directory location (e.g., ``/data/mass_spec/my_raw_files/`` or a Panorama WebDAV URL (described above).
-   * - ✓
-     - ``fasta``
-     - That path to the location of the FASTA file to be used in the Comet search. This can be a directory location (e.g., ``/data/mass_spec/my.fasta`` or a Panorama WebDAV URL (described above).
+     - ``spectra_file``
+     - That path to the location of a raw, mzML, or mzXML file to be processed. This can be a local file (e.g., ``/data/mass_spec/my_raw_files/my_raw.raw`` or a Panorama WebDAV URL (described above).
    * - 
-     - ``comet_params``
-     - That path to the location of the Comet params file to be used in the Comet search. This can be a directory location (e.g., ``/data/mass_spec/comet.params`` or a Panorama WebDAV URL (described above). Default: ``'comet.params'``.
+     - ``casanovo_params``
+     - That path to the location of the Casanovo params file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo.yaml`` or a Panorama WebDAV URL (described above). A sample can be found at: https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/casanovo.yaml Default: ``'casanovo.yaml'``.
+   * - 
+     - ``casanovo_weights``
+     - That path to the location of the Casanovo weights file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo_weights.ckpt`` or a Panorama WebDAV URL (described above). Default: ``'https://github.com/Noble-Lab/casanovo/releases/download/v4.2.0/casanovo_v4_2_0.ckpt'``.
+   * - 
+     - ``use_gpus``
+     - Set to ``'true'`` to use available GPUs for the Casanovo search. Note: if no GPUs are available, this must be set to ``false``. Default: ``false``.
    * - 
      - ``limelight_upload``
      - Set to ``'true'`` to upload to Limelight. If set to ``true``, the following Limelight-related parameters apply. Default: ``false``.
@@ -85,12 +89,6 @@ The ``params`` Section
      - Comma-delimited list of Limelight tags to use for this search (e.g., ``'yeast,control,2023'``. Any tags present that haven't been created in Limelight will be created in Limelight. Note: You can also specify
        categories for tags, and tags with the same tag categories will be grouped together in Limelight. For example, one could have a tag category called ``treatment`` and tags called ``control`` or ``irradiated`` as
        tags within this tag category. To specify a tag category use the tag category name then a tilda (~) then the tag name. E.g., ``treatment~control,organism~yeast,year~2023``. Default: no tags will be sent.
-   * - 
-     - ``limelight_import_decoys``
-     - If set to ``true``, decoy hits will be imported into Limelight--enabling target/decoy QC visualization. Only set to ``true`` if this is required, dramatically increases file sizes. Default: ``false``
-   * - 
-     - ``limelight_entrapment_prefix``
-     - If this set, any protein that begins with this string will be considered an entrapment decoy by Limelight--that is a target hit that is secretly really a decoy. This enables some QC/statistic tools within Limelight to estimate error. Example: ``limelight_entrapment_prefix = 'ENTRAP'``. Default: not set.
    * - 
      - ``email``
      - The email address to which a notification should be sent upon workflow completion. If no email is specified, no email will be sent. To send email, you must configure mail server settings (see below).
