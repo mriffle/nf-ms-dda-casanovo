@@ -2,7 +2,23 @@ process CASANOVO {
     publishDir "${params.result_dir}/casanovo", failOnError: true, mode: 'copy'
     label 'process_high_constant'
     container params.images.casanovo
-    containerOptions "--shm-size=1g ${params.use_gpus ? '--gpus=all' : ''}"
+
+    containerOptions = { 
+        def options = '--shm-size=1g'
+        if (params.use_gpus) {
+            if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
+                options += ' --nv -e CUDA_LAUNCH_BLOCKING=1'
+            } else if (workflow.containerEngine == "docker") {
+                options += ' --gpus all -e CUDA_LAUNCH_BLOCKING=1'
+            }
+        }
+        return options
+    }
+
+    // don't melt the GPU
+    if (params.use_gpus) {
+        maxForks = 1
+    }
 
     input:
         path mzml_file
