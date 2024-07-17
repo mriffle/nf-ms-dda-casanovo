@@ -1,6 +1,7 @@
 process CASANOVO {
     publishDir "${params.result_dir}/casanovo", failOnError: true, mode: 'copy'
     label 'process_high_constant'
+    label 'process_long'
     container params.images.casanovo
 
     containerOptions = { 
