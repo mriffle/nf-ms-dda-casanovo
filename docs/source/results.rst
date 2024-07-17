@@ -9,15 +9,15 @@ When running the workflow you should see output similar to:
 .. code-block:: console
 
     N E X T F L O W  ~  version 23.04.1
-    Launching `https://github.com/mriffle/nf-ms-dda-casanovo` [reverent_wing] DSL2 - revision: 84ddf777cd [initial]
-    executor >  slurm (1)
-    [9f/5595b5] process > wf_casanovo:CASANOVO (1)                 [100%] 1 of 1, cached: 1 ✔
-    [b7/2b4e08] process > wf_casanovo:CONVERT_TO_LIMELIGHT_XML (1) [100%] 1 of 1, cached: 1 ✔
-    [75/4e7e5a] process > wf_casanovo:UPLOAD_TO_LIMELIGHT (1)      [100%] 1 of 1 ✔
-    Completed at: 14-Jun-2023 13:39:38
-    Duration    : 18m 53s
-    CPU hours   : 3.9
-    Succeeded   : 23
+    Launching `https://github.com/mriffle/nf-ms-dda-casanovo` [serene_kilby] DSL2 - revision: 84ddf777cd [initial]
+    executor >  slurm (3)
+    [81/7fb137] process > wf_casanovo:CASANOVO (1)                 [100%] 1 of 1 ✔
+    [4b/67c6e4] process > wf_casanovo:CONVERT_TO_LIMELIGHT_XML (1) [100%] 1 of 1 ✔
+    [fe/3fa18d] process > wf_casanovo:UPLOAD_TO_LIMELIGHT (1)      [100%] 1 of 1 ✔
+    Completed at: 17-Jul-2024 16:15:53
+    Duration    : 7h 39m 13s
+    CPU hours   : 458.7
+    Succeeded   : 3
 
 The first line shows the version of Nextflow you are running. The second line shows the version of the workflow
 you are running. The third line shows the executor you are using. An executor in Nextflow describes the actual
