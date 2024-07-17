@@ -70,6 +70,9 @@ The ``params`` Section
      - ``use_gpus``
      - Set to ``'true'`` to use available GPUs for the Casanovo search. Note: if no GPUs are available, this must be set to ``false``. Default: ``false``.
    * - 
+     - ``cuda_launch_blocking``
+     - Set to ``'true'`` if encountering errors on older GPUs to disable asynchronicity in CUDA applications. Do not set to true unless necessary (you see CUDA errors), this may degrade performance. Default: ``false``.
+   * - 
      - ``limelight_upload``
      - Set to ``'true'`` to upload to Limelight. If set to ``true``, the following Limelight-related parameters apply. Default: ``false``.
    * - 
