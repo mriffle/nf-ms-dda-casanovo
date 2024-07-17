@@ -2,9 +2,6 @@
 Workflow Overview
 ===================================
 
-These documents describe a standardized Nextflow workflow for de novo searching of bottom up proteomics data using Casanovo. The source code for the workflow can be found at: 
-https://github.com/mriffle/nf-ms-dda-casanovo. 
-
 Workflow Components
 ===================
 The workflow is made up of the following software components, each may be run multiple times for different tasks.
