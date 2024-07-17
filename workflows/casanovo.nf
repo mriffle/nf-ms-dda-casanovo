@@ -7,7 +7,7 @@ include { UPLOAD_TO_LIMELIGHT } from "../modules/limelight_upload"
 workflow wf_casanovo {
 
     take:
-        spectra_file_ch
+        spectra_file
         casanovo_params
         casanovo_weights
         from_raw_file
@@ -17,9 +17,9 @@ workflow wf_casanovo {
 
         // convert raw files to mzML files if necessary
         if(from_raw_file) {
-            mzml_file_ch = MSCONVERT(spectra_file_ch)
+            mzml_file_ch = MSCONVERT(spectra_file)
         } else {
-            mzml_file_ch = spectra_file_ch
+            mzml_file_ch =  Channel.fromPath(spectra_file)
         }
 
         CASANOVO(mzml_file_ch, casanovo_params, casanovo_weights)
