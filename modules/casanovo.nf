@@ -8,11 +8,16 @@ process CASANOVO {
         def options = '--shm-size=1g'
         if (params.use_gpus) {
             if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
-                options += ' --nv -e CUDA_LAUNCH_BLOCKING=1'
+                options += ' --nv'
             } else if (workflow.containerEngine == "docker") {
-                options += ' --gpus all -e CUDA_LAUNCH_BLOCKING=1'
+                options += ' --gpus all'
+            }
+            
+            if (params.cuda_launch_blocking) {
+                options += ' -e CUDA_LAUNCH_BLOCKING=1'
             }
         }
+
         return options
     }
 
