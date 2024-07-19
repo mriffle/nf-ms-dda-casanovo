@@ -59,13 +59,13 @@ The ``params`` Section
      - Description
    * - ✓
      - ``spectra_file``
-     - That path to the location of a raw, mzML, or mzXML file to be processed. This can be a local file (e.g., ``/data/mass_spec/my_raw_files/my_raw.raw`` or a Panorama WebDAV URL (described above).
+     - The path to the location of a raw, mzML, or mzXML file to be processed. This can be a local file (e.g., ``/data/mass_spec/my_raw_files/my_raw.raw`` or a Panorama WebDAV URL (described above).
    * - 
      - ``casanovo_params``
-     - That path to the location of the Casanovo params file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo.yaml`` or a Panorama WebDAV URL (described above). A sample can be found at: https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/casanovo.yaml Default: ``'casanovo.yaml'``.
+     - The path to the location of the Casanovo params file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo.yaml`` or a Panorama WebDAV URL (described above). A sample can be found at: https://raw.githubusercontent.com/mriffle/nf-ms-dda-casanovo/main/resources/casanovo.yaml Default: ``'casanovo.yaml'``.
    * - 
      - ``casanovo_weights``
-     - That path to the location of the Casanovo weights file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo_weights.ckpt`` or a Panorama WebDAV URL (described above). Default: ``'https://github.com/Noble-Lab/casanovo/releases/download/v4.2.0/casanovo_v4_2_0.ckpt'``.
+     - The path to the location of the Casanovo weights file to be used in the Casanovo search. This can be a local file (e.g., ``/data/mass_spec/casanovo_weights.ckpt``, a Panorama WebDAV URL (described above, or a GitHub URL). Default: ``'https://github.com/Noble-Lab/casanovo/releases/download/v4.2.0/casanovo_v4_2_0.ckpt'``.
    * - 
      - ``use_gpus``
      - Set to ``'true'`` to use available GPUs for the Casanovo search. Note: if no GPUs are available, this must be set to ``false``. Default: ``false``.
