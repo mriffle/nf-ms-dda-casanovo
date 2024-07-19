@@ -18,15 +18,13 @@ The workflow is made up of the following software components, each may be run mu
 
    Casanovo is the primary search program that identifies peptides present in the raw mass spectrometry data.
 
-* **Limelight XML Conversion** (https://github.com/yeastrc/limelight-import-casanovo)
+*  **Limelight XML Conversion** (https://github.com/yeastrc/limelight-import-casanovo)
 
-   The Limelight XML converter converts the native output of Casanovo to Limelight XML, suitable for import into Limelight. This
-   step will only run if uploading to Limelight is enabled.
+   The Limelight XML converter converts the native output of Casanovo to Limelight XML, suitable for import into Limelight. This step will only run if uploading to Limelight is enabled.
 
-* **Limelight** (https://limelight-ms.org/)
+*  **Limelight** (https://limelight-ms.org/)
 
-   Limelight is a web application for visualization, analysis, and sharing of proteomics results generated from mass spectrometry data. If
-   uploading to Limelight is enabled, the results will be uploaded automatically to the specified Limelight instance.
+   Limelight is a web application for visualization, analysis, and sharing of proteomics results generated from mass spectrometry data. If uploading to Limelight is enabled, the results will be uploaded automatically to the specified Limelight instance.
 
 How to Run
 ===================
