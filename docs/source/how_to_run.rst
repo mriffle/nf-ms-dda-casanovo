@@ -115,7 +115,7 @@ Follow these steps to run a workflow:
 
     .. code-block:: bash
 
-        nextflow run -resume -r main -profile aws mriffle/nf-ms-dda-casanovoa -bucket-dir s3://bucket/dir -c pipeline.config
+        nextflow run -resume -r main -profile aws mriffle/nf-ms-dda-casanovo -bucket-dir s3://bucket/dir -c pipeline.config
 
     .. important::
 
