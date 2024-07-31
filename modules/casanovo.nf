@@ -3,7 +3,7 @@ process CASANOVO {
     label 'process_high_constant'
     label 'process_long'
     container params.images.casanovo
-    containerOptions '--shm-size=1000000000'
+    containerOptions '--shm-size 1000000000'
 
     // don't melt the GPU
     if (params.use_gpus) {
