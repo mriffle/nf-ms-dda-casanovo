@@ -7,10 +7,11 @@ process CASANOVO {
     containerOptions = { 
         def options = '--shm-size=1g'
         if (params.use_gpus) {
-            if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
-                options += ' --nv'
-            } else if (workflow.containerEngine == "docker") {
+            if (workflow.containerEngine == "docker") {
                 options += ' --gpus all'
+            }
+            else if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
+                options += ' --nv'
             }
             
             if (params.cuda_launch_blocking) {
