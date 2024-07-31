@@ -3,24 +3,11 @@ process CASANOVO {
     label 'process_high_constant'
     label 'process_long'
     container params.images.casanovo
+    containerOptions '--shm-size=1000000000'
 
-    containerOptions = { 
-//        def options = '--shm-size=1g'
-        def options = '--shm-size=1000000000'
-        if (params.use_gpus) {
-            if (workflow.containerEngine == "docker") {
-                options += ' --gpus all'
-            }
-            else if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
-                options += ' --nv'
-            }
-            
-            if (params.cuda_launch_blocking) {
-                options += ' -e CUDA_LAUNCH_BLOCKING=1'
-            }
-        }
-
-        return options
+    // don't melt the GPU
+    if (params.use_gpus) {
+        maxForks = 1
     }
 
     input:
