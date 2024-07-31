@@ -5,7 +5,8 @@ process CASANOVO {
     container params.images.casanovo
 
     containerOptions = { 
-        def options = '--shm-size=1g'
+//        def options = '--shm-size=1g'
+        def options = '--shm-size=1000000000'
         if (params.use_gpus) {
             if (workflow.containerEngine == "docker") {
                 options += ' --gpus all'
