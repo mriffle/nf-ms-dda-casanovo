@@ -6,9 +6,9 @@ process CASANOVO {
 
     containerOptions = { 
 
-        // When the executor is awsbatch, --shim-size is expecting the number of MiB
+        // When the executor is awsbatch, --shm-size is expecting the number of MiB
         // otherwise it is expecting the number of bytes
-        def options = task.executor == 'awsbatch' ? '--shm-size 954' : '--shm-size 1g'
+        def options = '--shm-size 1g'
         if (params.use_gpus) {
             if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
                 options += ' --nv'
