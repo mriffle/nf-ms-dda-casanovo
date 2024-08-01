@@ -5,7 +5,9 @@ process CASANOVO {
     container params.images.casanovo
 
     containerOptions = { 
-        def options = '--shm-size 1g'
+
+        // todo: when using aws, set this to 954 (~1 gigabyte to MiB, required for AWS)
+        def options = task.executor == 'awsbatch' ? '--shm-size 954' : '--shm-size 1g'
         if (params.use_gpus) {
             if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
                 options += ' --nv'
