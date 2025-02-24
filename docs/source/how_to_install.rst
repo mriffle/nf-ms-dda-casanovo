@@ -100,7 +100,7 @@ Follow these steps:
 
 Optional: Install Docker on local system
 =========================================
-This step needs to be performed if processes (e.g., Comet) are going to be run on your local computer. That is, the actual processing steps will be run locally.
+This step needs to be performed if processes (e.g., Casanovo) are going to be run on your local computer. That is, the actual processing steps will be run locally.
 
 Follow the Docker install guide at: https://docs.docker.com/engine/install/
 
