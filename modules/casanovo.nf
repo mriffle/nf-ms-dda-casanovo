@@ -46,7 +46,8 @@ process CASANOVO {
     casanovo sequence \
         --config ${casanovo_params_file} \
         --model ${casanovo_weights_file} \
-        --output results.mztab \
+        --output_dir . \
+        --output_root results \
         ${mzml_file} \
         > >(tee "${mzml_file.baseName}.casanovo.stdout") 2> >(tee "${mzml_file.baseName}.casanovo.stderr" >&2)
 
