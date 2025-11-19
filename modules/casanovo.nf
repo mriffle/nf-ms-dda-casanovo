@@ -8,7 +8,10 @@ process CASANOVO {
 
         // When the executor is awsbatch, --shm-size is expecting the number of MiB
         // otherwise it is expecting the number of bytes
-        def options = '--shm-size 1g'
+        def options = ''
+        if (workflow.containerEngine == "docker") {
+            options += '--shm-size 1g'
+        }
         if (params.use_gpus) {
             if (workflow.containerEngine == "singularity" || workflow.containerEngine == "apptainer") {
                 options += ' --nv'
