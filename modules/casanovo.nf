@@ -45,6 +45,12 @@ process CASANOVO {
 
     script:
     """
+
+    export MPLCONFIGDIR=\$PWD/.matplotlib
+    export NUMBA_CACHE_DIR=\$PWD/.numba_cache
+    export XDG_CACHE_HOME=\$PWD/.cache
+    mkdir -p \$MPLCONFIGDIR \$NUMBA_CACHE_DIR \$XDG_CACHE_HOME
+
     echo "Running casanovo..."
     casanovo sequence \
         --config ${casanovo_params_file} \
