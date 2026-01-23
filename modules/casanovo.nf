@@ -46,6 +46,8 @@ process CASANOVO {
 
     script:
     """
+    export HOME=\$PWD
+
     echo "Running casanovo..."
     casanovo sequence \
         --config ${casanovo_params_file} \
