@@ -12,9 +12,16 @@ concurrency:
 
 jobs:
   stub-tests:
-    name: Nextflow stub run
+    name: stub tests (nextflow ${{ matrix.nextflow-version }})
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        nextflow-version:
+          - '24.04.4'        # floor declared in manifest
+          - 'latest-stable'  # current stable, catches forward-compat breaks
 
     steps:
       - name: Checkout
@@ -29,7 +36,7 @@ jobs:
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v2
         with:
-          version: latest-stable
+          version: ${{ matrix.nextflow-version }}
 
       - name: Run stub tests
         run: ./tests/stub/run_stub_tests.sh -v
@@ -38,6 +45,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: stub-test-logs
+          name: stub-test-logs-nf-${{ matrix.nextflow-version }}
           path: tests/stub/.work/
           retention-days: 7
