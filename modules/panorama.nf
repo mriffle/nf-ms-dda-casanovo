@@ -32,9 +32,12 @@ process PANORAMA_GET_RAW_FILE {
         """
 
     stub:
-    """
-    touch "{$file(web_dav_dir_url).name}"
-    """
+        file_name = file(web_dav_dir_url).name
+        """
+        touch "${file_name}"
+        touch "panorama-get-${file_name}.stdout"
+        touch "panorama-get-${file_name}.stderr"
+        """
 }
 
 process PANORAMA_GET_CASANOVO_PARAMS {
@@ -64,9 +67,12 @@ process PANORAMA_GET_CASANOVO_PARAMS {
         """
 
     stub:
-    """
-    touch "{$file(web_dav_dir_url).name}"
-    """
+        file_name = file(web_dav_dir_url).name
+        """
+        touch "${file_name}"
+        touch "panorama-get-${file_name}.stdout"
+        touch "panorama-get-${file_name}.stderr"
+        """
 }
 
 process PANORAMA_GET_CASANOVO_WEIGHTS {
@@ -96,7 +102,10 @@ process PANORAMA_GET_CASANOVO_WEIGHTS {
         """
 
     stub:
-    """
-    touch "{$file(web_dav_dir_url).name}"
-    """
+        file_name = file(web_dav_dir_url).name
+        """
+        touch "${file_name}"
+        touch "panorama-get-${file_name}.stdout"
+        touch "panorama-get-${file_name}.stderr"
+        """
 }

@@ -61,4 +61,11 @@ process CASANOVO {
 
     echo "DONE!" # Needed for proper exit
     """
+
+    stub:
+    """
+    touch results.mztab results.log
+    touch "${mzml_file.baseName}.casanovo.stdout"
+    touch "${mzml_file.baseName}.casanovo.stderr"
+    """
 }

@@ -20,4 +20,9 @@ process GH_DOWNLOAD_WEIGHTS {
     echo "DONE!" # Needed for proper exit
     """
 
+    stub:
+    """
+    touch dummy_weights.ckpt
+    touch gh_weights_dl.stdout gh_weights_dl.stderr
+    """
 }

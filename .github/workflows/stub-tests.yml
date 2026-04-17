@@ -1,0 +1,43 @@
+name: Stub tests
+
+on:
+  push:
+    branches:
+      - casanovo4-branch
+
+# Cancel an in-progress run when a new push lands on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  stub-tests:
+    name: Nextflow stub run
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Nextflow
+        uses: nf-core/setup-nextflow@v2
+        with:
+          version: latest-stable
+
+      - name: Run stub tests
+        run: ./tests/stub/run_stub_tests.sh -v
+
+      - name: Upload test logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stub-test-logs
+          path: tests/stub/.work/
+          retention-days: 7
