@@ -31,7 +31,7 @@ workflow {
         PANORAMA_GET_RAW_FILE(params.spectra_file)
         spectra_file = PANORAMA_GET_RAW_FILE.out.panorama_file
     } else {
-        spectra_file = file(params.spectra_file, checkIfExists: true)
+        spectra_file = Channel.fromPath(params.spectra_file, checkIfExists: true)
     }
 
     // get Casanovo params from Panorama, if requested
