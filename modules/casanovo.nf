@@ -4,7 +4,8 @@ process CASANOVO {
     label 'process_very_long_constant'
     container params.images.casanovo
 
-    containerOptions = { 
+    // Directive closures take no `=` in the strict (Nextflow 26) parser.
+    containerOptions {
 
         // When the executor is awsbatch, --shm-size is expecting the number of MiB
         // otherwise it is expecting the number of bytes
@@ -28,10 +29,11 @@ process CASANOVO {
         return options
     }
 
-    // don't melt the GPU
-    if (params.use_gpus) {
-        maxForks = 1
-    }
+    // don't melt the GPU: cap concurrency at 1 on GPUs, otherwise no limit (null).
+    // Written as a directive (no `=`, no `if`) so it parses under Nextflow 26's
+    // strict parser while still being evaluated after the full config is merged
+    // (so `--use_gpus` / `-c` overrides are honored).
+    maxForks params.use_gpus ? 1 : null
 
     input:
         path mzml_file
@@ -58,5 +60,12 @@ process CASANOVO {
         > >(tee "${mzml_file.baseName}.casanovo.stdout") 2> >(tee "${mzml_file.baseName}.casanovo.stderr" >&2)
 
     echo "DONE!" # Needed for proper exit
+    """
+
+    stub:
+    """
+    touch results.mztab results.log
+    touch "${mzml_file.baseName}.casanovo.stdout"
+    touch "${mzml_file.baseName}.casanovo.stderr"
     """
 }

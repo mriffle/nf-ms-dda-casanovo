@@ -1,0 +1,54 @@
+name: Stub tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Cancel an in-progress run when a new push lands on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  stub-tests:
+    name: stub tests (Nextflow 25 + 26)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Cache the self-contained Nextflow distribution (launcher + framework jars
+      # + plugins) that the harness downloads. Keyed on the harness script, which
+      # pins the Nextflow versions under test.
+      - name: Cache Nextflow distribution
+        uses: actions/cache@v4
+        with:
+          path: tests/stub/.nextflow-dist
+          key: nxf-dist-${{ runner.os }}-${{ hashFiles('tests/stub/run_stub_tests.sh') }}
+          restore-keys: |
+            nxf-dist-${{ runner.os }}-
+
+      # The harness downloads and pins the Nextflow versions itself (Nextflow 25
+      # floor + Nextflow 26), so no separate Nextflow install step is needed.
+      - name: Run stub tests
+        run: ./tests/stub/run_stub_tests.sh -v
+
+      - name: Upload test logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stub-test-logs
+          path: tests/stub/.work/
+          retention-days: 7

@@ -19,7 +19,7 @@ workflow wf_casanovo {
         if(from_raw_file) {
             mzml_file_ch = MSCONVERT(spectra_file)
         } else {
-            mzml_file_ch =  Channel.fromPath(spectra_file)
+            mzml_file_ch = spectra_file
         }
 
         CASANOVO(mzml_file_ch, casanovo_params, casanovo_weights)
