@@ -63,6 +63,16 @@ workflow {
     config_file = file(workflow.configFiles[1])
 
     wf_casanovo(spectra_file, casanovo_params, casanovo_weights, from_raw_file, config_file)
+
+    // Email notifications. The handler lives inside the entry workflow because
+    // Nextflow 26's strict parser forbids top-level `workflow.onComplete` statements.
+    workflow.onComplete {
+        try {
+            email()
+        } catch (Exception e) {
+            println "Warning: Error sending completion email."
+        }
+    }
 }
 
 //
@@ -86,13 +96,4 @@ def email() {
 //
 workflow dummy {
     println "This is a workflow that doesn't do anything."
-}
-
-// Email notifications:
-workflow.onComplete {
-    try {
-        email()
-    } catch (Exception e) {
-        println "Warning: Error sending completion email."
-    }
 }

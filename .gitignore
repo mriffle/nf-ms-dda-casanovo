@@ -2,3 +2,4 @@
 .vscode
 /tests/stub/.work/
 /tests/stub/fixtures/
+/tests/stub/.nextflow-dist/
