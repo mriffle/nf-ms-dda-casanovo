@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
 
 # -- Project information -----------------------------------------------------
 project = "nf-ms-dda-casanovo"
-copyright = "2024, Michael Riffle"
+copyright = "2026, Michael Riffle"
 author = "Michael Riffle"
 
 # -- General configuration ---------------------------------------------------
